@@ -11,9 +11,11 @@ import { AiOutlinePlus } from "react-icons/ai";
 interface Props {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  todod: string;
+  setTodod: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
+export const TodoList: React.FC<Props> = ({ todos, setTodos, todod, setTodod }) => {
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
 
   const handleChange =
@@ -53,6 +55,8 @@ export const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
                   key={todo.id}
                   todos={todos}
                   setTodos={setTodos}
+                  todod={todod}
+                  setTodod={setTodod}
                 />
               ))}
           </AccordionDetails>
@@ -83,6 +87,8 @@ export const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
                   key={todo.id}
                   todos={todos}
                   setTodos={setTodos}
+                  todod={todod}
+                  setTodod={setTodod}
                 />
               ))}
           </AccordionDetails>

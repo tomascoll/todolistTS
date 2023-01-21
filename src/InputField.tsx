@@ -4,11 +4,13 @@ import { TextField, Button, Box } from "@mui/material";
 interface Props {
   todo: string;
   setTodo: React.Dispatch<React.SetStateAction<string>>;
+  todod: string;
+  setTodod: React.Dispatch<React.SetStateAction<string>>;
   handleAdd: (e: React.FormEvent) => void;
 }
 
 export const InputField = (data: Props) => {
-  const { todo, setTodo, handleAdd } = data;
+  const { todo, setTodo, handleAdd, todod, setTodod } = data;
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -18,19 +20,28 @@ export const InputField = (data: Props) => {
         handleAdd(e), inputRef.current?.blur;
       }}
     >
-      <Box sx={{ marginY: 2 }}>
+      <Box sx={{ marginY: 1}}>
         <TextField
-          sx={{ width: 470 }}
+          sx={{ marginY: 1 , marginRight:2}}
           id="standard-basic"
           variant="standard"
           ref={inputRef}
-          placeholder="Write a task"
+          placeholder="New task"
           value={todo}
           onChange={(e) => setTodo(e.target.value)}
         />
-        <Button sx={{ marginLeft: 2 }} variant="contained" type="submit">
-          Add
-        </Button>
+        <TextField
+          sx={{ marginY: 1 , marginRight:2}}
+          id="standard-basic"
+          variant="standard"
+          ref={inputRef}
+          placeholder="Add details"
+          value={todod}
+          onChange={(e) => setTodod(e.target.value)}
+        />
+      <Button sx={{ marginBottom: 1 }} variant="contained" type="submit">
+        Add
+      </Button>
       </Box>
     </form>
   );
