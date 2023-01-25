@@ -20,7 +20,7 @@ export const InputField = (data: Props) => {
         handleAdd(e), inputRef.current?.blur;
       }}
     >
-      <Box sx={{ marginY: 1}}>
+      <Box sx={{ margin: 2}}>
         <TextField
           sx={{ marginY: 1 , marginRight:2}}
           id="standard-basic"

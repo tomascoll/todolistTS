@@ -15,18 +15,18 @@ interface Props {
   setTodod: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const TodoList: React.FC<Props> = ({ todos, setTodos, todod, setTodod }) => {
+export const TodoList: React.FC<Props> = ({ todos, setTodos, todod, setTodod}) => {
   const [expanded, setExpanded] = React.useState<string | false>("panel1");
+
+  const sortArray = [...todos].sort((a, b) => (a.fav === b.fav) ? 0 : a.fav ? -1 : 1);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
-
+  
   return (
     <>
-      <div>
-        <hr />
         <Accordion
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
@@ -46,8 +46,8 @@ export const TodoList: React.FC<Props> = ({ todos, setTodos, todod, setTodod }) 
               Incompleted
             </Typography>
           </AccordionSummary>
-          <AccordionDetails>
-            {todos
+          <AccordionDetails sx={{padding:0}}>
+            {sortArray
               .filter((todos) => todos.isDone === false)
               .map((todo) => (
                 <SingleInput
@@ -55,8 +55,6 @@ export const TodoList: React.FC<Props> = ({ todos, setTodos, todod, setTodod }) 
                   key={todo.id}
                   todos={todos}
                   setTodos={setTodos}
-                  todod={todod}
-                  setTodod={setTodod}
                 />
               ))}
           </AccordionDetails>
@@ -78,8 +76,8 @@ export const TodoList: React.FC<Props> = ({ todos, setTodos, todod, setTodod }) 
               Completed ({todos.filter((todos) => todos.isDone === true).length})
             </Typography>
           </AccordionSummary>
-          <AccordionDetails>
-            {todos
+          <AccordionDetails sx={{padding:0}}>
+            {sortArray
               .filter((todos) => todos.isDone === true)
               .map((todo) => (
                 <SingleInput
@@ -87,13 +85,10 @@ export const TodoList: React.FC<Props> = ({ todos, setTodos, todod, setTodod }) 
                   key={todo.id}
                   todos={todos}
                   setTodos={setTodos}
-                  todod={todod}
-                  setTodod={setTodod}
                 />
               ))}
           </AccordionDetails>
         </Accordion>
-      </div>
     </>
   );
 };

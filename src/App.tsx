@@ -7,6 +7,7 @@ import { Typography } from "@mui/material";
 
 export const App: React.FC = () => {
   const [todod, setTodod] = useState<string>("");
+  const [favorites, setFavorites] = useState<string>("");
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>(() => {
     const savedState = localStorage.getItem("Todos");
@@ -26,7 +27,7 @@ export const App: React.FC = () => {
     if (todo) {
       setTodos([
         ...todos,
-        { id: Date.now(), todo: todo, isDone: false, desc: todod },
+        { id: Date.now(), todo: todo, isDone: false, desc: todod, fav: false },
       ]);
       setTodo("");
       setTodod("");
@@ -41,9 +42,11 @@ export const App: React.FC = () => {
           fontSize: 30,
           color: "#1976d2",
           fontWeight: "bold",
+          textAlign:'center',
+          p:1
         }}
       >
-        Taskify
+        Tasks
       </Typography>
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} todod={todod} setTodod={setTodod}/>
       <TodoList todos={todos} setTodos={setTodos} todod={todod} setTodod={setTodod}/>
