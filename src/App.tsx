@@ -46,7 +46,7 @@ export const App: React.FC = () => {
           p:1
         }}
       >
-        Tasks
+        TASKS
       </Typography>
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} todod={todod} setTodod={setTodod}/>
       <TodoList todos={todos} setTodos={setTodos} todod={todod} setTodod={setTodod}/>
